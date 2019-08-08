@@ -77,6 +77,7 @@ func (d Dir) resolve(name string) string {
 	return filepath.Join(dir, filepath.FromSlash(slashClean(name)))
 }
 
+// Mkdir create a dir
 func (d Dir) Mkdir(ctx context.Context, name string, perm os.FileMode) error {
 	if name = d.resolve(name); name == "" {
 		return os.ErrNotExist
@@ -84,6 +85,7 @@ func (d Dir) Mkdir(ctx context.Context, name string, perm os.FileMode) error {
 	return os.Mkdir(name, perm)
 }
 
+// OpenFile open the file and get the handle
 func (d Dir) OpenFile(ctx context.Context, name string, flag int, perm os.FileMode) (File, error) {
 	if name = d.resolve(name); name == "" {
 		return nil, os.ErrNotExist
@@ -95,6 +97,7 @@ func (d Dir) OpenFile(ctx context.Context, name string, flag int, perm os.FileMo
 	return f, nil
 }
 
+// RemoveAll remove all file
 func (d Dir) RemoveAll(ctx context.Context, name string) error {
 	if name = d.resolve(name); name == "" {
 		return os.ErrNotExist
@@ -106,6 +109,7 @@ func (d Dir) RemoveAll(ctx context.Context, name string) error {
 	return os.RemoveAll(name)
 }
 
+// Rename rename the file name
 func (d Dir) Rename(ctx context.Context, oldName, newName string) error {
 	if oldName = d.resolve(oldName); oldName == "" {
 		return os.ErrNotExist
@@ -120,6 +124,7 @@ func (d Dir) Rename(ctx context.Context, oldName, newName string) error {
 	return os.Rename(oldName, newName)
 }
 
+// Stat get the file stat
 func (d Dir) Stat(ctx context.Context, name string) (os.FileInfo, error) {
 	if name = d.resolve(name); name == "" {
 		return nil, os.ErrNotExist

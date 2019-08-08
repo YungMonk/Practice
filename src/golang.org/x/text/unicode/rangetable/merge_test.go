@@ -12,16 +12,16 @@ import (
 var (
 	maxRuneTable = &unicode.RangeTable{
 		R32: []unicode.Range32{
-			{unicode.MaxRune, unicode.MaxRune, 1},
+			{Lo: unicode.MaxRune, Hi: unicode.MaxRune, Stride: 1},
 		},
 	}
 
 	overlap1 = &unicode.RangeTable{
 		R16: []unicode.Range16{
-			{0x100, 0xfffc, 4},
+			{Lo: 0x100, Hi: 0xfffc, Stride: 4},
 		},
 		R32: []unicode.Range32{
-			{0x100000, 0x10fffc, 4},
+			{Lo: 0x100000, Hi: 0x10fffc, Stride: 4},
 		},
 	}
 
@@ -30,7 +30,7 @@ var (
 			{0x101, 0xfffd, 4},
 		},
 		R32: []unicode.Range32{
-			{0x100001, 0x10fffd, 3},
+			{Lo: 0x100001, Hi: 0x10fffd, Stride: 3},
 		},
 	}
 
@@ -46,13 +46,13 @@ var (
 			{0xb, 0xf, 2},
 		},
 		R32: []unicode.Range32{
-			{0x10001, 0x10001, 1},
-			{0x10002, 0x10002, 1},
-			{0x10003, 0x10003, 1},
-			{0x10005, 0x10005, 1},
-			{0x10007, 0x10007, 1},
-			{0x10009, 0x10009, 1},
-			{0x1000b, 0x1000f, 2},
+			{Lo: 0x10001, Hi: 0x10001, Stride: 1},
+			{Lo: 0x10002, Hi: 0x10002, Stride: 1},
+			{Lo: 0x10003, Hi: 0x10003, Stride: 1},
+			{Lo: 0x10005, Hi: 0x10005, Stride: 1},
+			{Lo: 0x10007, Hi: 0x10007, Stride: 1},
+			{Lo: 0x10009, Hi: 0x10009, Stride: 1},
+			{Lo: 0x1000b, Hi: 0x1000f, Stride: 2},
 		},
 	}
 )

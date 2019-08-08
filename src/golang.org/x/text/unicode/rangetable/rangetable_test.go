@@ -10,7 +10,7 @@ var (
 	empty = &unicode.RangeTable{}
 	many  = &unicode.RangeTable{
 		R16:         []unicode.Range16{{0, 0xffff, 5}},
-		R32:         []unicode.Range32{{0x10004, 0x10009, 5}},
+		R32:         []unicode.Range32{{Lo: 0x10004, Hi: 0x10009, Stride: 5}},
 		LatinOffset: 0,
 	}
 )

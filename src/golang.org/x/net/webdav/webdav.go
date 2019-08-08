@@ -17,6 +17,7 @@ import (
 	"time"
 )
 
+// Handler is WebDAV resource
 type Handler struct {
 	// Prefix is the URL path prefix to strip from WebDAV resource paths.
 	Prefix string
@@ -668,6 +669,7 @@ const (
 	StatusInsufficientStorage = 507
 )
 
+// StatusText return the Text status
 func StatusText(code int) string {
 	switch code {
 	case StatusMulti:
