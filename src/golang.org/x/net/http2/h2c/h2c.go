@@ -171,7 +171,7 @@ func h2cUpgrade(w http.ResponseWriter, r *http.Request) (net.Conn, error) {
 
 	hijacker, ok := w.(http.Hijacker)
 	if !ok {
-		return nil, errors.New("hijack not supported.")
+		return nil, errors.New("hijack not supported")
 	}
 	conn, rw, err := hijacker.Hijack()
 	if err != nil {
