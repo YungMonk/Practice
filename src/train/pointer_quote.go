@@ -86,7 +86,7 @@ func test3() {
 	fmt.Println()
 }
 
-func test4() {
+func Test4() {
 	p := &point{1, 2}
 	fmt.Print(p, "\t")
 
@@ -98,9 +98,9 @@ func test4() {
 	fmt.Print(p, "\t")
 
 	// calling method setX with receiver &p (type **point) requires explicit dereference
-	// (*p).setX(5)
-	// p.setY3(6)
-	// fmt.Print(p, "\t")
+	(*p).setX(5)
+	p.setY3(6)
+	fmt.Print(p, "\t")
 
 	fmt.Println()
 }
