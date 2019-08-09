@@ -153,29 +153,29 @@ func ldmlBool(t language.Tag, old bool, key string) bool {
 
 var (
 	// IgnoreCase sets case-insensitive comparison.
-	IgnoreCase Option = ignoreCase
-	ignoreCase        = Option{3, ignoreCaseF}
+	IgnoreCase = ignoreCase
+	ignoreCase = Option{3, ignoreCaseF}
 
 	// IgnoreDiacritics causes diacritical marks to be ignored. ("o" == "ö").
-	IgnoreDiacritics Option = ignoreDiacritics
-	ignoreDiacritics        = Option{3, ignoreDiacriticsF}
+	IgnoreDiacritics = ignoreDiacritics
+	ignoreDiacritics = Option{3, ignoreDiacriticsF}
 
 	// IgnoreWidth causes full-width characters to match their half-width
 	// equivalents.
-	IgnoreWidth Option = ignoreWidth
-	ignoreWidth        = Option{2, ignoreWidthF}
+	IgnoreWidth = ignoreWidth
+	ignoreWidth = Option{2, ignoreWidthF}
 
 	// Loose sets the collator to ignore diacritics, case and width.
-	Loose Option = loose
-	loose        = Option{4, looseF}
+	Loose = loose
+	loose = Option{4, looseF}
 
 	// Force ordering if strings are equivalent but not equal.
-	Force Option = force
-	force        = Option{5, forceF}
+	Force = force
+	force = Option{5, forceF}
 
 	// Numeric specifies that numbers should sort numerically ("2" < "12").
-	Numeric Option = numeric
-	numeric        = Option{5, numericF}
+	Numeric = numeric
+	numeric = Option{5, numericF}
 )
 
 func ignoreWidthF(o *options) {
