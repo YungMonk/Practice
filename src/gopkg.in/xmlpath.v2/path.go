@@ -71,9 +71,11 @@ func (iter *Iter) Node() *Node {
 	if state.pos == 0 {
 		panic("Iter.Node called before Iter.Next")
 	}
+
 	if state.node == nil {
 		panic("Iter.Node called after Iter.Next false")
 	}
+
 	return state.node
 }
 
@@ -83,12 +85,14 @@ func (iter *Iter) Next() bool {
 	tip := len(iter.state) - 1
 outer:
 	for {
+
 		for !iter.state[tip].next() {
 			tip--
 			if tip == -1 {
 				return false
 			}
 		}
+
 		for tip < len(iter.state)-1 {
 			tip++
 			iter.state[tip].init(iter.state[tip-1].node)
@@ -97,9 +101,11 @@ outer:
 				continue outer
 			}
 		}
+
 		if iter.seen[iter.state[tip].node.pos] {
 			continue
 		}
+
 		iter.seen[iter.state[tip].node.pos] = true
 		return true
 	}
