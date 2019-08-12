@@ -1,0 +1,11 @@
+{
+    "filed": "position",
+    "rules": "//*[@id=\"resultList\"]/div[@class=\"el\"]",
+    "child": [
+        {
+            "filed": "address",
+            "rules": "./span[2]",
+            "child": []
+        }
+    ]
+}
