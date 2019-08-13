@@ -67,14 +67,19 @@ func importGroup(env *ProcessEnv, importPath string) int {
 	return 0
 }
 
+// ImportFixType is a type for import
 type ImportFixType int
 
 const (
+	// AddImport is the add import case for ImportFixType
 	AddImport ImportFixType = iota
+	// DeleteImport is the delete import case for ImportFixType
 	DeleteImport
+	// SetImportName is the delete import case for ImportFixType
 	SetImportName
 )
 
+// ImportFix is import need filed.
 type ImportFix struct {
 	// StmtInfo represents the import statement this fix will add, remove, or change.
 	StmtInfo ImportInfo
@@ -623,6 +628,7 @@ func (e *ProcessEnv) env() []string {
 	return env
 }
 
+// GetResolver is get a resolver
 func (e *ProcessEnv) GetResolver() Resolver {
 	if e.resolver != nil {
 		return e.resolver

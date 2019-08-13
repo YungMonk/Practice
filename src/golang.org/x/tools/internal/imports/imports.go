@@ -83,7 +83,7 @@ func FixImports(filename string, src []byte, opt *Options) (fixes []*ImportFix, 
 	return getFixes(fileSet, file, filename, opt.Env)
 }
 
-// ApplyFix will apply all of the fixes to the file and format it.
+// ApplyFixes will apply all of the fixes to the file and format it.
 func ApplyFixes(fixes []*ImportFix, filename string, src []byte, opt *Options) (formatted []byte, err error) {
 	src, err = initialize(filename, src, opt)
 	if err != nil {

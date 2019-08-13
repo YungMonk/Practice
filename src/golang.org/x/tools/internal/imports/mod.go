@@ -31,6 +31,7 @@ type ModuleResolver struct {
 	ModCachePkgs map[string]*pkg // Packages in the mod cache, keyed by absolute directory.
 }
 
+// ModuleJSON is a json data to struct
 type ModuleJSON struct {
 	Path     string           // module path
 	Version  string           // module version
@@ -45,6 +46,7 @@ type ModuleJSON struct {
 	Error    *ModuleErrorJSON // error loading module
 }
 
+// ModuleErrorJSON is a error for import json
 type ModuleErrorJSON struct {
 	Err string // the error itself
 }
@@ -206,19 +208,19 @@ func (r *ModuleResolver) scan(_ references) ([]*pkg, error) {
 
 	// Walk GOROOT, GOPATH/pkg/mod, and the main module.
 	roots := []gopathwalk.Root{
-		{filepath.Join(r.env.GOROOT, "/src"), gopathwalk.RootGOROOT},
+		{Path: filepath.Join(r.env.GOROOT, "/src"), Type: gopathwalk.RootGOROOT},
 	}
 	if r.Main != nil {
-		roots = append(roots, gopathwalk.Root{r.Main.Dir, gopathwalk.RootCurrentModule})
+		roots = append(roots, gopathwalk.Root{Path: r.Main.Dir, Type: gopathwalk.RootCurrentModule})
 	}
 	for _, p := range filepath.SplitList(r.env.GOPATH) {
-		roots = append(roots, gopathwalk.Root{filepath.Join(p, "/pkg/mod"), gopathwalk.RootModuleCache})
+		roots = append(roots, gopathwalk.Root{Path: filepath.Join(p, "/pkg/mod"), Type: gopathwalk.RootModuleCache})
 	}
 
 	// Walk replace targets, just in case they're not in any of the above.
 	for _, mod := range r.ModsByModPath {
 		if mod.Replace != nil {
-			roots = append(roots, gopathwalk.Root{mod.Dir, gopathwalk.RootOther})
+			roots = append(roots, gopathwalk.Root{Path: mod.Dir, Type: gopathwalk.RootOther})
 		}
 	}
 
