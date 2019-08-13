@@ -55,7 +55,6 @@ type ParserHead struct {
 
 // ParserFileds is parse index
 func ParserFileds(p *ParserHead, node *xmlpath.Node) {
-	// result := make(map[string]interface{})
 	for _, parcfg := range p.Fileds {
 		Parser(parcfg, node)
 	}
@@ -63,14 +62,12 @@ func ParserFileds(p *ParserHead, node *xmlpath.Node) {
 
 // Parser is detail
 func Parser(p *ParserConfig, node *xmlpath.Node) {
-	// bookstore为根节点编译过后得到一个*Path类型的值 //*[@id="resultList"]/div[7]
 	path := xmlpath.MustCompile(p.Rules)
 
 	if len(p.Child) != 0 {
 		nodes := []*xmlpath.Node{}
 
 		it := path.Iter(node)
-		// 判断是否有下一个
 		for it.Next() {
 			nodes = append(nodes, it.Node())
 		}
@@ -82,7 +79,6 @@ func Parser(p *ParserConfig, node *xmlpath.Node) {
 				}
 			}
 		} else {
-
 			for _, filed := range p.Child {
 				Parser(filed, nodes[0])
 			}
@@ -90,7 +86,7 @@ func Parser(p *ParserConfig, node *xmlpath.Node) {
 
 	} else {
 		val, _ := path.String(node)
-		fmt.Println(val)
+		fmt.Printf("%+v , %+v \n", p.Filed, val)
 	}
 }
 
