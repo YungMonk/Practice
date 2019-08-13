@@ -7,7 +7,7 @@
         "child": [
             {
                 "filed": "src",
-                "rules": "",
+                "rules": ".//input/@value",
                 "default": "50",
                 "lists": false,
                 "child": []

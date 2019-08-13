@@ -28,8 +28,9 @@ func init() {
 }
 
 func main() {
-	// setConifg("/mnt/d/Development/workspace/src/config.json")
-	nodename()
+	parCfg := setConifg("/mnt/d/Development/workspace/src/config.json")
+	ParserFileds(parCfg, htmlNode)
+	// nodename()
 }
 
 // ParserConfig init
@@ -65,19 +66,31 @@ func Parser(p *ParserConfig, node *xmlpath.Node) {
 	// bookstore为根节点编译过后得到一个*Path类型的值 //*[@id="resultList"]/div[7]
 	path := xmlpath.MustCompile(p.Rules)
 
-	if p.Lists {
+	if len(p.Child) != 0 {
+		nodes := []*xmlpath.Node{}
 
-		// 可能会有多本书所以使用path.Iter(node)获取该节点下面的node集合也就是iterator
 		it := path.Iter(node)
-
 		// 判断是否有下一个
 		for it.Next() {
+			nodes = append(nodes, it.Node())
+		}
+
+		if p.Lists {
+			for _, chilNode := range nodes {
+				for _, filed := range p.Child {
+					Parser(filed, chilNode)
+				}
+			}
+		} else {
+
 			for _, filed := range p.Child {
-				Parser(filed, it.Node())
+				Parser(filed, nodes[0])
 			}
 		}
+
 	} else {
-		fmt.Println(path.String(node))
+		val, _ := path.String(node)
+		fmt.Println(val)
 	}
 }
 
@@ -105,7 +118,7 @@ func nodename() {
 	fmt.Printf("%+v \n", childStr)
 }
 
-func setConifg(filename string) ParserHead {
+func setConifg(filename string) *ParserHead {
 	// 获取文件指针
 	fp, err := os.Open(filename)
 	if err != nil {
@@ -125,7 +138,7 @@ func setConifg(filename string) ParserHead {
 		fmt.Println("config file is read faild.")
 	}
 
-	fmt.Printf("%s \n", string(fileData))
+	// fmt.Printf("%s \n", string(fileData))
 
 	var parHed ParserHead
 
@@ -134,7 +147,7 @@ func setConifg(filename string) ParserHead {
 		fmt.Printf("json export struct faild: %+v \n", err)
 	}
 
-	fmt.Printf("%+v \n", parHed)
+	// fmt.Printf("%+v \n", parHed)
 
-	return parHed
+	return &parHed
 }
