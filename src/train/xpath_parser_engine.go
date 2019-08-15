@@ -49,10 +49,11 @@ func XpathParserEngine() {
 // 	},
 // }
 type ParserConfig struct {
-	Filed string          `json:"filed"`
-	Rules string          `json:"rules"`
-	Lists bool            `json:"lists"`
-	Child []*ParserConfig `json:"child"`
+	Filed   string          `json:"filed"`
+	Rules   string          `json:"rules"`
+	Lists   bool            `json:"lists"`
+	Default string          `json:"default"`
+	Child   []*ParserConfig `json:"child"`
 }
 
 // ParserHead is the parser config
@@ -78,6 +79,10 @@ func ParserFileds(p *ParserHead, node *xmlpath.Node) []Childs {
 // Parser is detail
 func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 	path := xmlpath.MustCompile(p.Rules)
+
+	if p.Default != "" {
+		return p.Filed, p.Default
+	}
 
 	var val interface{}
 	if len(p.Child) != 0 {
