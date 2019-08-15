@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 
 	xmlpath "gopkg.in/xmlpath.v2"
 )
@@ -29,7 +30,16 @@ func init() {
 
 func main() {
 	parCfg := setConifg("/mnt/d/Development/workspace/src/config.json")
-	ParserFileds(parCfg, htmlNode)
+	result := ParserFileds(parCfg, htmlNode)
+	fmt.Printf("%+v \n", result)
+	jsonBytes, err := json.Marshal(result)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(string(jsonBytes))
+
 	// nodename()
 }
 
@@ -53,17 +63,26 @@ type ParserHead struct {
 	Fileds []*ParserConfig
 }
 
+// Childs is the parser result
+type Childs map[string]interface{}
+
 // ParserFileds is parse index
-func ParserFileds(p *ParserHead, node *xmlpath.Node) {
+func ParserFileds(p *ParserHead, node *xmlpath.Node) []Childs {
+	var resulst []Childs
 	for _, parcfg := range p.Fileds {
-		Parser(parcfg, node)
+		key, val := Parser(parcfg, node)
+
+		resulst = append(resulst, Childs{key: val})
 	}
+
+	return resulst
 }
 
 // Parser is detail
-func Parser(p *ParserConfig, node *xmlpath.Node) {
+func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 	path := xmlpath.MustCompile(p.Rules)
 
+	var val interface{}
 	if len(p.Child) != 0 {
 		nodes := []*xmlpath.Node{}
 
@@ -73,21 +92,30 @@ func Parser(p *ParserConfig, node *xmlpath.Node) {
 		}
 
 		if p.Lists {
+			childs := []Childs{}
 			for _, chilNode := range nodes {
+				content := Childs{}
 				for _, filed := range p.Child {
-					Parser(filed, chilNode)
+					key, val := Parser(filed, chilNode)
+					content[key] = val
 				}
+				childs = append(childs, content)
 			}
+			val = childs
 		} else {
+			content := Childs{}
 			for _, filed := range p.Child {
-				Parser(filed, nodes[0])
+				key, val := Parser(filed, nodes[0])
+				content[key] = val
 			}
+			val = content
 		}
-
 	} else {
-		val, _ := path.String(node)
-		fmt.Printf("%+v , %+v \n", p.Filed, val)
+		nodeString, _ := path.String(node)
+		val = strings.TrimSpace(nodeString)
 	}
+
+	return p.Filed, val
 }
 
 // filed, rules, child
