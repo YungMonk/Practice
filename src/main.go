@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"time"
-	"train"
 
 	"github.com/go-redis/redis"
 )
 
 func main() {
-	train.XpathParserEngine()
+	// train.XpathParserEngine()
+	standalonRedisTest()
 }
 
 func errHandler(err error) {
@@ -46,7 +46,7 @@ func standalonRedisTest() {
 		errHandler(err)
 	}
 
-	err = client.Set("foo1", "bar1", time.Hour*2).Err()
+	err = client.Set("foo1", "bar1", time.Second*5).Err()
 	if err != nil {
 		fmt.Printf("try set key[foo1] to value[bar1] error[%s]\n",
 			err.Error())
@@ -189,8 +189,7 @@ func standalonRedisTest() {
 
 	_, err = pubsub.Receive()
 	if err != nil {
-		fmt.Printf("try subscribe channel[test_channel] error[%s]\n",
-			err.Error())
+		fmt.Printf("try subscribe channel[test_channel] error[%s]\n", err.Error())
 		errHandler(err)
 	}
 
@@ -200,8 +199,7 @@ func standalonRedisTest() {
 	// publish a message
 	err = client.Publish("test_channel", "hello").Err()
 	if err != nil {
-		fmt.Printf("try publish message to channel[test_channel] error[%s]\n",
-			err.Error())
+		fmt.Printf("try publish message to channel[test_channel] error[%s]\n", err.Error())
 		errHandler(err)
 	}
 
@@ -216,7 +214,6 @@ func standalonRedisTest() {
 			break
 		}
 
-		fmt.Printf("recv message[%s] from channel[%s]\n",
-			msg.Payload, msg.Channel)
+		fmt.Printf("recv message[%s] from channel[%s]\n", msg.Payload, msg.Channel)
 	}
 }
