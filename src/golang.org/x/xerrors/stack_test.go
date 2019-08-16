@@ -52,7 +52,7 @@ func BenchmarkErrorf(b *testing.B) {
 			})
 			b.Run("Core", func(b *testing.B) {
 				for i := 0; i < b.N; i++ {
-					fmt.Errorf(bc.format, bc.args...)
+					_ = fmt.Errorf(bc.format, bc.args...)
 				}
 			})
 		})

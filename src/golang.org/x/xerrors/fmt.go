@@ -21,7 +21,7 @@ import (
 // format string ends with ": %w", the returned error implements Wrapper
 // with an Unwrap method returning it.
 func Errorf(format string, a ...interface{}) error {
-	err, wrap := lastError(format, a)
+	wrap, err := lastError(format, a)
 	format = formatPlusW(format)
 	if err == nil {
 		return &noWrapError{fmt.Sprintf(format, a...), nil, Caller(1)}
@@ -48,24 +48,22 @@ func formatPlusW(s string) string {
 	return s
 }
 
-func lastError(format string, a []interface{}) (err error, wrap bool) {
+func lastError(format string, a []interface{}) (wrap bool, err error) {
 	wrap = strings.HasSuffix(format, ": %w")
-	if !wrap &&
-		!strings.HasSuffix(format, ": %s") &&
-		!strings.HasSuffix(format, ": %v") {
-		return nil, false
+	if !wrap && !strings.HasSuffix(format, ": %s") && !strings.HasSuffix(format, ": %v") {
+		return false, nil
 	}
 
 	if len(a) == 0 {
-		return nil, false
+		return false, nil
 	}
 
 	err, ok := a[len(a)-1].(error)
 	if !ok {
-		return nil, false
+		return false, nil
 	}
 
-	return err, wrap
+	return wrap, err
 }
 
 type noWrapError struct {
