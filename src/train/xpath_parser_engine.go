@@ -12,14 +12,9 @@ import (
 
 var file *os.File
 var htmlNode *xmlpath.Node
-var HelperFunc = make(map[string]func(args ...interface{}))
 
 func init() {
 	var err error
-
-	HelperFunc["callback2"] = func(args ...interface{}) {
-		fmt.Println(args)
-	}
 
 	file, err = os.OpenFile("/mnt/d/Development/workspace/src/train/xpathParser/carjob.html", os.O_RDWR, os.ModePerm)
 	if err != nil {
