@@ -19,7 +19,21 @@
         "child": [
             {
                 "filed": "updated_at",
-                "rules": "//div[@class=\"myResume_head\"]/div[3]/span[1]"
+                "rules": "//div[@class=\"myResume_head\"]/div[3]/span[1]",
+                "cback": [
+                    {
+                        "method": "callback1",
+                        "params": [
+                            "123"
+                        ]
+                    },
+                    {
+                        "method": "callback2",
+                        "params": [
+                            "123"
+                        ]
+                    }
+                ]
             },
             {
                 "filed": "name",

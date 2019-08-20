@@ -40,6 +40,12 @@ func XpathParserEngine() {
 	fmt.Println(string(jsonBytes))
 }
 
+// CallBack is call back function.
+type CallBack struct {
+	Method string   `json:"method"`
+	Params []string `json:"params"`
+}
+
 // ParserConfig init
 // config := parserConfig{
 // 	filed: "position",
@@ -54,6 +60,7 @@ type ParserConfig struct {
 	Lists   bool            `json:"lists"`
 	Default interface{}     `json:"default"`
 	Child   []*ParserConfig `json:"child"`
+	Cback   []*CallBack     `json:"cback"`
 }
 
 // ParserHead is the parser config
@@ -114,6 +121,13 @@ func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 	} else {
 		nodeString, _ := path.String(node)
 		val = strings.TrimSpace(nodeString)
+
+		if len(p.Cback) != 0 {
+			for _, val := range p.Cback {
+				fmt.Println(val.Method)
+				fmt.Println(val.Params)
+			}
+		}
 	}
 
 	return p.Filed, val
