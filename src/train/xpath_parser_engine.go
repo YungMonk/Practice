@@ -52,7 +52,7 @@ type ParserConfig struct {
 	Filed   string          `json:"filed"`
 	Rules   string          `json:"rules"`
 	Lists   bool            `json:"lists"`
-	Default string          `json:"default"`
+	Default interface{}     `json:"default"`
 	Child   []*ParserConfig `json:"child"`
 }
 
@@ -78,12 +78,11 @@ func ParserFileds(p *ParserHead, node *xmlpath.Node) []Childs {
 
 // Parser is detail
 func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
-	path := xmlpath.MustCompile(p.Rules)
-
-	if p.Default != "" {
+	if p.Default != nil {
 		return p.Filed, p.Default
 	}
 
+	path := xmlpath.MustCompile(p.Rules)
 	var val interface{}
 	if len(p.Child) != 0 {
 		nodes := []*xmlpath.Node{}

@@ -2,70 +2,46 @@
     {
         "filed": "source",
         "rules": "//div[@class=\"myResume_head\"]",
-        "default": "",
-        "lists": false,
         "child": [
             {
                 "filed": "src",
-                "rules": ".//input/@value",
-                "default": "50",
-                "lists": false,
-                "child": []
+                "default": 50
             },
             {
                 "filed": "src_no",
-                "rules": ".//input/@value",
-                "default": "",
-                "lists": false,
-                "child": []
+                "rules": ".//input/@value"
             }
         ]
     },
     {
         "filed": "basic",
         "rules": "//div[@class=\"myResume_info\"]",
-        "default": "",
-        "lists": false,
         "child": [
             {
                 "filed": "updated_at",
-                "rules": "//div[@class=\"myResume_head\"]/div[3]/span[1]",
-                "default": "",
-                "lists": false,
-                "child": []
+                "rules": "//div[@class=\"myResume_head\"]/div[3]/span[1]"
             },
             {
                 "filed": "name",
-                "rules": ".//li[1]/span[2]",
-                "default": "",
-                "lists": false,
-                "child": []
+                "rules": ".//li[1]/span[2]"
             },
             {
                 "filed": "address",
-                "rules": ".//li[7]/span[2]",
-                "default": "",
-                "lists": false,
-                "child": []
+                "rules": ".//li[7]/span[2]"
             }
         ]
     },
     {
         "filed": "contact",
         "rules": "//div[@class=\"myResume_info\"]",
-        "lists": false,
         "child": [
             {
                 "filed": "email",
-                "rules": ".//li[10]/span[2]/a[1]/text()",
-                "lists": false,
-                "child": []
+                "rules": ".//li[10]/span[2]/a[1]/text()"
             },
             {
                 "filed": "phone",
-                "rules": ".//li[9]/span[2]/text()",
-                "lists": false,
-                "child": []
+                "rules": ".//li[9]/span[2]/text()"
             }
         ]
     },
@@ -76,15 +52,11 @@
         "child": [
             {
                 "filed": "corporation_name",
-                "rules": ".//div[@class='myResume_title']",
-                "lists": false,
-                "child": []
+                "rules": ".//div[@class='myResume_title']"
             },
             {
                 "filed": "position_name",
-                "rules": ".//span[@class='myResume_neme']",
-                "lists": false,
-                "child": []
+                "rules": ".//span[@class='myResume_neme']"
             }
         ]
     }

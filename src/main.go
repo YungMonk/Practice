@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 	"time"
+	"train"
 
 	"github.com/go-redis/redis"
 )
 
 func main() {
-	// train.XpathParserEngine()
-	standalonRedisTest()
+	train.XpathParserEngine()
+	// standalonRedisTest()
 }
 
 func errHandler(err error) {
