@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 
 	xmlpath "gopkg.in/xmlpath.v2"
@@ -11,9 +12,14 @@ import (
 
 var file *os.File
 var htmlNode *xmlpath.Node
+var HelperFunc = make(map[string]func(args ...interface{}))
 
 func init() {
 	var err error
+
+	HelperFunc["callback2"] = func(args ...interface{}) {
+		fmt.Println(args)
+	}
 
 	file, err = os.OpenFile("/mnt/d/Development/workspace/src/train/xpathParser/carjob.html", os.O_RDWR, os.ModePerm)
 	if err != nil {
@@ -123,14 +129,27 @@ func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 		val = strings.TrimSpace(nodeString)
 
 		if len(p.Cback) != 0 {
-			for _, val := range p.Cback {
-				fmt.Println(val.Method)
-				fmt.Println(val.Params)
+			for _, callback := range p.Cback {
+				val = HelpereFunc(callback.Method)(val, callback.Params)
 			}
 		}
 	}
 
 	return p.Filed, val
+}
+
+func HelpereFunc(callback string) func(args ...interface{}) interface{} {
+	switch callback {
+	case "callback1":
+		return func(args ...interface{}) interface{} {
+			reg, _ := regexp.Compile("\\d{4}-\\d*-\\d*")
+			return reg.FindString(args[0].(string))
+		}
+	default:
+		return func(args ...interface{}) interface{} {
+			return args[0]
+		}
+	}
 }
 
 // filed, rules, child
