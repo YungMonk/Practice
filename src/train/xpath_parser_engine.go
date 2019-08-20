@@ -138,6 +138,7 @@ func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 	return p.Filed, val
 }
 
+// HelpereFunc is the function process.
 func HelpereFunc(callback string) func(args ...interface{}) interface{} {
 	switch callback {
 	case "callback1":
