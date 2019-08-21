@@ -86,7 +86,7 @@ func test3() {
 	fmt.Println()
 }
 
-func Test4() {
+func test4() {
 	p := &point{1, 2}
 	fmt.Print(p, "\t")
 
