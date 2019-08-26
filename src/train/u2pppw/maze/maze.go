@@ -29,8 +29,7 @@ type point struct {
 	i, j int
 }
 
-var dirs = [4]point{
-	{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
+var dirs = [4]point{{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
 
 func (p point) add(r point) point {
 	return point{p.i + r.i, p.j + r.j}
