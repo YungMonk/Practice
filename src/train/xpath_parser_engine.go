@@ -4,34 +4,36 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path"
 	"regexp"
+	"runtime"
 	"strings"
 
 	xmlpath "gopkg.in/xmlpath.v2"
 )
 
-var file *os.File
-var htmlNode *xmlpath.Node
+// XpathParserEngine is a parser engine
+func XpathParserEngine() {
 
-func init() {
-	var err error
+	_, filename, _, _ := runtime.Caller(0)
+	currentDir := path.Dir(filename)
 
-	file, err = os.OpenFile("/mnt/d/Development/workspace/src/train/xpathParser/carjob.html", os.O_RDWR, os.ModePerm)
+	tmplate := path.Join(currentDir, "./xpathParser/carjob.html")
+	file, err := os.OpenFile(tmplate, os.O_RDWR, os.ModePerm)
 	if err != nil {
 		panic("openFile failed!!!")
 	}
 
 	defer file.Close()
 
-	htmlNode, err = xmlpath.ParseHTML(file)
+	htmlNode, err := xmlpath.ParseHTML(file)
 	if err != nil {
 		panic("xmlpath parse file failed!!! ")
 	}
-}
 
-// XpathParserEngine is a parser engine
-func XpathParserEngine() {
-	parCfg := setConifg("/mnt/d/Development/workspace/src/train/xpathParser/config.json")
+	configPath := path.Join(currentDir, "./xpathParser/config.json")
+	parCfg := SetConifg(configPath)
+
 	result := ParserFileds(parCfg, htmlNode)
 
 	jsonBytes, err := json.Marshal(result)
@@ -47,14 +49,15 @@ type CallBack struct {
 	Params []string `json:"params"`
 }
 
-// ParserConfig init
-// config := parserConfig{
-// 	filed: "position",
-// 	rules: "//*[@id=\"resultList\"]/div[@class=\"el\"]",
-// 	child: []*parserConfig{
-// 		&parserConfig{filed: "name", rules: "./span[2]", child: nil},
-// 	},
-// }
+// ParserHead is the parser config
+type ParserHead struct {
+	Fileds []*ParserConfig
+}
+
+// Childs is the parser result
+type Childs map[string]interface{}
+
+// ParserConfig is the tempate config.
 type ParserConfig struct {
 	Filed   string          `json:"filed"`
 	Rules   string          `json:"rules"`
@@ -63,14 +66,6 @@ type ParserConfig struct {
 	Child   []*ParserConfig `json:"child"`
 	Cback   []*CallBack     `json:"cback"`
 }
-
-// ParserHead is the parser config
-type ParserHead struct {
-	Fileds []*ParserConfig
-}
-
-// Childs is the parser result
-type Childs map[string]interface{}
 
 // ParserFileds is parse index
 func ParserFileds(p *ParserHead, node *xmlpath.Node) []Childs {
@@ -90,12 +85,16 @@ func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 		return p.Filed, p.Default
 	}
 
+	// bookstore为根节点编译过后得到一个*Path类型的值 //*[@id="resultList"]/div[7]
 	path := xmlpath.MustCompile(p.Rules)
 	var val interface{}
 	if len(p.Child) != 0 {
 		nodes := []*xmlpath.Node{}
 
+		// 可能会有多本书所以使用path.Iter(node)获取该节点下面的node集合也就是iterator
 		it := path.Iter(node)
+
+		// 判断是否有下一个
 		for it.Next() {
 			nodes = append(nodes, it.Node())
 		}
@@ -148,31 +147,8 @@ func HelpereFunc(callback string) func(args ...interface{}) interface{} {
 	}
 }
 
-// filed, rules, child
-func nodename() {
-
-	// bookstore为根节点编译过后得到一个*Path类型的值 //*[@id="resultList"]/div[7]
-	path := xmlpath.MustCompile("//div[@class='myResume_box']//span[contains(text(), '工作经历')]/ancestor::div[@class='myResume_show']/div[@class='showInfo clearfix']")
-
-	// 可能会有多本书所以使用path.Iter(node)获取该节点下面的node集合也就是iterator
-	it := path.Iter(htmlNode)
-
-	nodes := []*xmlpath.Node{}
-	// 判断是否有下一个
-	for it.Next() {
-		nodes = append(nodes, it.Node())
-	}
-
-	childPath := xmlpath.MustCompile(".//div[@class='myResume_title']")
-	childStr, err := childPath.String(nodes[0])
-	if !err {
-		fmt.Printf("Parser rule is: %s\nResult: %s", "./span[1]", childStr)
-	}
-
-	fmt.Printf("%+v \n", childStr)
-}
-
-func setConifg(filename string) *ParserHead {
+// SetConifg is set the template config.
+func SetConifg(filename string) *ParserHead {
 	// 获取文件指针
 	fp, err := os.Open(filename)
 	if err != nil {
