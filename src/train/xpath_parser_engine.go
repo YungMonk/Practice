@@ -192,16 +192,11 @@ func setConifg(filename string) *ParserHead {
 		fmt.Println("config file is read faild.")
 	}
 
-	// fmt.Printf("%s \n", string(fileData))
-
 	var parHed ParserHead
-
 	err = json.Unmarshal(fileData, &parHed.Fileds)
 	if err != nil {
 		fmt.Printf("json export struct faild: %+v \n", err)
 	}
-
-	// fmt.Printf("%+v \n", parHed)
 
 	return &parHed
 }
