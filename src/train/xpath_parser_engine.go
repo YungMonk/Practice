@@ -135,10 +135,15 @@ func Parser(p *ParserConfig, node *xmlpath.Node) (string, interface{}) {
 // HelpereFunc is the function process.
 func HelpereFunc(callback string) func(args ...interface{}) interface{} {
 	switch callback {
-	case "callback1":
+	case "handleDelDupSpace":
 		return func(args ...interface{}) interface{} {
-			reg, _ := regexp.Compile("\\d{4}-\\d*-\\d*")
-			return reg.FindString(args[0].(string))
+			reg, _ := regexp.Compile("\\s*")
+			return reg.ReplaceAllLiteralString(args[0].(string), "")
+		}
+	case "handleTime":
+		return func(args ...interface{}) interface{} {
+			reg, _ := regexp.Compile("[1,2]\\d{3}\\S{0,1}[0,1]{0,1}\\d(\\S{0,1}[0-3]{0,1}\\d日{0,1}){0,1}|至今")
+			return reg.FindAllString(args[0].(string), -1)
 		}
 	default:
 		return func(args ...interface{}) interface{} {
