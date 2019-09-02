@@ -1,0 +1,36 @@
+[submodule "src/github.com/uudashr/gopkgs"]
+	path = src/github.com/uudashr/gopkgs
+	url = https://github.com/uudashr/gopkgs.git
+[submodule "src/github.com/ramya-rao-a/go-outline"]
+	path = src/github.com/ramya-rao-a/go-outline
+	url = https://github.com/ramya-rao-a/go-outline.git
+[submodule "src/github.com/acroca/go-symbols"]
+	path = src/github.com/acroca/go-symbols
+	url = https://github.com/acroca/go-symbols.git
+[submodule "src/github.com/go-delve/delve"]
+	path = src/github.com/go-delve/delve
+	url = https://github.com/go-delve/delve.git
+[submodule "src/github.com/stamblerre/gocode"]
+	path = src/github.com/stamblerre/gocode
+	url = https://github.com/stamblerre/gocode.git
+[submodule "src/github.com/rogpeppe/godef"]
+	path = src/github.com/rogpeppe/godef
+	url = https://github.com/rogpeppe/godef.git
+[submodule "src/github.com/ianthehat/godef"]
+	path = src/github.com/ianthehat/godef
+	url = https://github.com/ianthehat/godef.git
+[submodule "src/github.com/sqs/goreturns"]
+	path = src/github.com/sqs/goreturns
+	url = https://github.com/sqs/goreturns.git
+[submodule "src/github.com/mdempsky/gocode"]
+	path = src/github.com/mdempsky/gocode
+	url = https://github.com/mdempsky/gocode.git
+[submodule "src/golang.org/x/tools"]
+	path = src/golang.org/x/tools
+	url = https://github.com/golang/tools.git
+[submodule "src/github.com/golang/lint"]
+	path = src/github.com/golang/lint
+	url = https://github.com/golang/lint.git
+[submodule "src/golang.org/x/lint/golint"]
+	path = src/golang.org/x/lint/golint
+	url = https://github.com/golang/lint.git
