@@ -1,6 +1,3 @@
-[submodule "src/github.com/uudashr/gopkgs"]
-	path = src/github.com/uudashr/gopkgs
-	url = https://github.com/uudashr/gopkgs.git
 [submodule "src/github.com/ramya-rao-a/go-outline"]
 	path = src/github.com/ramya-rao-a/go-outline
 	url = https://github.com/ramya-rao-a/go-outline.git
@@ -28,9 +25,3 @@
 [submodule "src/golang.org/x/tools"]
 	path = src/golang.org/x/tools
 	url = https://github.com/golang/tools.git
-[submodule "src/github.com/golang/lint"]
-	path = src/github.com/golang/lint
-	url = https://github.com/golang/lint.git
-[submodule "src/golang.org/x/lint/golint"]
-	path = src/golang.org/x/lint/golint
-	url = https://github.com/golang/lint.git
