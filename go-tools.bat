@@ -26,5 +26,3 @@ go build -o bin/goreturns.exe github.com/sqs/goreturns
 go build -o bin/golint.exe golang.org/x/lint
 
 PAUSE
-
-git submodule add https://github.com/go-redis/redis.git src/github.com/go-redis/redis

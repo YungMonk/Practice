@@ -1,0 +1,12 @@
+go build -o bin/gocode github.com/mdempsky/gocode
+go build -o bin/gopkgs github.com/uudashr/gopkgs/cmd/gopkgs
+go build -o bin/go-outline github.com/ramya-rao-a/go-outline
+go build -o bin/go-symbols github.com/acroca/go-symbols
+go build -o bin/guru golang.org/x/tools/cmd/guru
+go build -o bin/gorename golang.org/x/tools/cmd/gorename
+go build -o bin/dlv github.com/go-delve/delve/cmd/dlv
+go build -o bin/gocode-gomod github.com/stamblerre/gocode
+go build -o bin/godef github.com/rogpeppe/godef
+go build -o bin/godef-gomod github.com/ianthehat/godef
+go build -o bin/goreturns github.com/sqs/goreturns
+go build -o bin/golint golang.org/x/lint
