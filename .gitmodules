@@ -22,9 +22,6 @@
 [submodule "src/github.com/mdempsky/gocode"]
 	path = src/github.com/mdempsky/gocode
 	url = https://github.com/mdempsky/gocode.git
-[submodule "src/golang.org/x/tools"]
-	path = src/golang.org/x/tools
-	url = https://github.com/golang/tools.git
 [submodule "src/github.com/uudashr/gopkgs"]
 	path = src/github.com/uudashr/gopkgs
 	url = https://github.com/uudashr/gopkgs.git
