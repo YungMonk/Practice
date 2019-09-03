@@ -28,9 +28,6 @@
 [submodule "src/github.com/uudashr/gopkgs"]
 	path = src/github.com/uudashr/gopkgs
 	url = https://github.com/uudashr/gopkgs.git
-[submodule "src/golang.org/x/lint"]
-	path = src/golang.org/x/lint
-	url = https://github.com/golang/lint.git
 [submodule "src/github.com/karrick/godirwalk"]
 	path = src/github.com/karrick/godirwalk
 	url = https://github.com/karrick/godirwalk.git
