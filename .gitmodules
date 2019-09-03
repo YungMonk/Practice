@@ -25,3 +25,18 @@
 [submodule "src/golang.org/x/tools"]
 	path = src/golang.org/x/tools
 	url = https://github.com/golang/tools.git
+[submodule "src/github.com/uudashr/gopkgs"]
+	path = src/github.com/uudashr/gopkgs
+	url = https://github.com/uudashr/gopkgs.git
+[submodule "src/golang.org/x/lint/golint"]
+	path = src/golang.org/x/lint/golint
+	url = https://github.com/golang/lint.git
+[submodule "src/github.com/karrick/godirwalk"]
+	path = src/github.com/karrick/godirwalk
+	url = https://github.com/karrick/godirwalk.git
+[submodule "src/github.com/pkg/errors"]
+	path = src/github.com/pkg/errors
+	url = https://github.com/pkg/errors.git
+[submodule "src/github.com/go-redis/redis"]
+	path = src/github.com/go-redis/redis
+	url = https://github.com/go-redis/redis.git

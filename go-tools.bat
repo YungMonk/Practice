@@ -1,5 +1,7 @@
 git submodule add https://github.com/mdempsky/gocode.git src/github.com/mdempsky/gocode
 git submodule add https://github.com/uudashr/gopkgs.git src/github.com/uudashr/gopkgs
+git submodule add https://github.com/karrick/godirwalk.git src/github.com/karrick/godirwalk
+git submodule add https://github.com/pkg/errors.git src/github.com/pkg/errors
 git submodule add https://github.com/ramya-rao-a/go-outline.git src/github.com/ramya-rao-a/go-outline
 git submodule add https://github.com/acroca/go-symbols.git src/github.com/acroca/go-symbols
 git submodule add https://github.com/golang/tools.git src/golang.org/x/tools
@@ -24,3 +26,5 @@ go build -o bin/goreturns.exe github.com/sqs/goreturns
 go build -o bin/golint.exe golang.org/x/lint/golint
 
 PAUSE
+
+git submodule add https://github.com/go-redis/redis.git src/github.com/go-redis/redis
