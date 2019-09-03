@@ -1,21 +1,14 @@
-MKDIR  src/golang.org/x
-
-git clone https://github.com/golang/tools.git src/golang.org/x/tools
-
-go get -v github.com/mdempsky/gocode
-go get -v github.com/uudashr/gopkgs/cmd/gopkgs
-go get -v github.com/ramya-rao-a/go-outline
-go get -v github.com/acroca/go-symbols
-go get -v golang.org/x/tools/cmd/guru
-go get -v golang.org/x/tools/cmd/gorename
-go get -v github.com/go-delve/delve/cmd/dlv
-go get -v github.com/stamblerre/gocode
-go get -v github.com/rogpeppe/godef
-go get -v github.com/ianthehat/godef
-go get -v github.com/sqs/goreturns
-go get -v github.com/golang/lint
-
-git clone https://github.com/golang/lint.git src/golang.org/x/lint
+git submodule add https://github.com/mdempsky/gocode.git src/github.com/mdempsky/gocode
+git submodule add https://github.com/uudashr/gopkgs.git src/github.com/uudashr/gopkgs
+git submodule add https://github.com/ramya-rao-a/go-outline.git src/github.com/ramya-rao-a/go-outline
+git submodule add https://github.com/acroca/go-symbols.git src/github.com/acroca/go-symbols
+git submodule add https://github.com/golang/tools.git src/golang.org/x/tools
+git submodule add https://github.com/go-delve/delve.git src/github.com/go-delve/delve
+git submodule add https://github.com/stamblerre/gocode.git src/github.com/stamblerre/gocode
+git submodule add https://github.com/rogpeppe/godef.git src/github.com/rogpeppe/godef
+git submodule add https://github.com/ianthehat/godef.git src/github.com/ianthehat/godef
+git submodule add https://github.com/sqs/goreturns.git src/github.com/sqs/goreturns
+git submodule add https://github.com/golang/lint.git src/golang.org/x/lint/golint
 
 go build -o bin/gocode.exe github.com/mdempsky/gocode
 go build -o bin/gopkgs.exe github.com/uudashr/gopkgs/cmd/gopkgs
