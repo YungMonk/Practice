@@ -43,3 +43,6 @@
 [submodule "src/gopkg.in/xmlpath.v2"]
 	path = src/gopkg.in/xmlpath.v2
 	url = https://github.com/go-xmlpath/xmlpath.git
+[submodule "src/golang.org/x/crypto"]
+	path = src/golang.org/x/crypto
+	url = https://github.com/golang/crypto.git
