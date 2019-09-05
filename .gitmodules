@@ -46,3 +46,15 @@
 [submodule "src/golang.org/x/crypto"]
 	path = src/golang.org/x/crypto
 	url = https://github.com/golang/crypto.git
+[submodule "src/golang.org/x/net"]
+	path = src/golang.org/x/net
+	url = https://github.com/golang/crypto.git
+[submodule "src/golang.org/x/text"]
+	path = src/golang.org/x/text
+	url = https://github.com/golang/crypto.git
+[submodule "src/golang.org/x/sys"]
+	path = src/golang.org/x/sys
+	url = https://github.com/golang/crypto.git
+[submodule "src/golang.org/x/xerrors"]
+	path = src/golang.org/x/xerrors
+	url = https://github.com/golang/crypto.git
