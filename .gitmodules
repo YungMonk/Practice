@@ -58,3 +58,6 @@
 [submodule "src/golang.org/x/xerrors"]
 	path = src/golang.org/x/xerrors
 	url = https://github.com/golang/crypto.git
+[submodule "src/github.com/go-sql-driver/mysql"]
+	path = src/github.com/go-sql-driver/mysql
+	url = https://github.com/go-sql-driver/mysql.git
