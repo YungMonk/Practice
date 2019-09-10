@@ -1,4 +1,4 @@
 .vscode/
 dump.rdb
 grabmail/
-pkg/mod/
+pkg/mod*/
